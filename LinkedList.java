@@ -6,7 +6,8 @@ public class LinkedList<T> {
         tail = null;
     }
 
-    public void addHead(Node<T> n) {
+    public void addHead(T t) {
+        Node<T> n = new Node<T>(t);
         if (head == null) {
             head = n;
             tail = n;
@@ -17,7 +18,8 @@ public class LinkedList<T> {
         }
     }
 
-    public void addTail(Node<T> n) {
+    public void addTail(T t) {
+        Node<T> n = new Node<T>(t);
         if (head == null) {
             head = n;
             tail = n;
@@ -28,15 +30,23 @@ public class LinkedList<T> {
         }
     }
 
-    public Node<T> getHead() {
-        return head;
+    public T getHead() {
+        if (head == null) {
+            return null;
+        }
+
+        return head.getData();
     }
 
-    public Node<T> getTail() {
-        return tail;
+    public T getTail() {
+        if (tail == null) {
+            return null;
+        }
+
+        return tail.getData();
     }
 
-    public Node<T> removeHead() {
+    public T removeHead() {
         if (head == null) {
             return null;
         }
@@ -51,10 +61,10 @@ public class LinkedList<T> {
             head = head.getNext();
         }
 
-        return removed;
+        return removed.getData();
     }
 
-    public Node<T> removeTail() {
+    public T removeTail() {
         if (head == tail) {
             return removeHead();
         }
@@ -68,6 +78,6 @@ public class LinkedList<T> {
         Node<T> removed = tail;
         tail = iter;
         
-        return removed;
+        return removed.getData();
     }
 }
